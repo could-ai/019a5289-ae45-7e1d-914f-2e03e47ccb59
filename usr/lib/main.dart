@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:couldai_user_app/screens/home_screen.dart';
+import 'package:couldai_user_app/screens/login_screen.dart';
 import 'package:couldai_user_app/screens/student_portal_screen.dart';
 import 'package:couldai_user_app/screens/parent_portal_screen.dart';
 import 'package:couldai_user_app/screens/staff_portal_screen.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
+        '/login': (context) => const LoginScreen(),
         '/student_portal': (context) => const StudentPortalScreen(),
         '/parent_portal': (context) => const ParentPortalScreen(),
         '/staff_portal': (context) => const StaffPortalScreen(),

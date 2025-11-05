@@ -33,21 +33,24 @@ class HomeScreen extends StatelessWidget {
                 context,
                 title: 'Student Portal',
                 icon: Icons.school,
-                routeName: '/student_portal',
+                routeName: '/login',
+                portalType: 'Student',
               ),
               const SizedBox(height: 24),
               _buildPortalButton(
                 context,
                 title: 'Parent Portal',
                 icon: Icons.family_restroom,
-                routeName: '/parent_portal',
+                routeName: '/login',
+                portalType: 'Parent',
               ),
               const SizedBox(height: 24),
               _buildPortalButton(
                 context,
                 title: 'Staff Portal',
                 icon: Icons.work,
-                routeName: '/staff_portal',
+                routeName: '/login',
+                portalType: 'Staff',
               ),
             ],
           ),
@@ -56,7 +59,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPortalButton(BuildContext context, {required String title, required IconData icon, required String routeName}) {
+  Widget _buildPortalButton(BuildContext context, {required String title, required IconData icon, required String routeName, required String portalType}) {
     return ElevatedButton.icon(
       icon: Icon(icon, size: 28),
       label: Text(title, style: const TextStyle(fontSize: 18)),
@@ -67,7 +70,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.pushNamed(context, routeName);
+        Navigator.pushNamed(context, routeName, arguments: portalType);
       },
     );
   }

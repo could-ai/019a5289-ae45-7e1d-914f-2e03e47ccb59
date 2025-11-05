@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:couldai_user_app/screens/student_dashboard_screen.dart';
 
 class StudentPortalScreen extends StatelessWidget {
   const StudentPortalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Student Portal'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      ),
-      body: const Center(
-        child: Text(
-          'Welcome to the Student Portal!',
-          style: TextStyle(fontSize: 22),
-        ),
-      ),
-    );
+    // For now, directly navigate to the dashboard.
+    // Later, this screen can be used for displaying student-specific information
+    // or as a landing page after login.
+    return const StudentDashboardScreen();
   }
 }
