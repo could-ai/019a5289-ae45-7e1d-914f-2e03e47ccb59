@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:couldai_user_app/screens/staff_dashboard_screen.dart';
 
 class StaffPortalScreen extends StatelessWidget {
   const StaffPortalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Staff Portal'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      ),
-      body: const Center(
-        child: Text(
-          'Welcome to the Staff Portal!',
-          style: TextStyle(fontSize: 22),
-        ),
-      ),
-    );
+    final role = ModalRoute.of(context)!.settings.arguments as String;
+
+    // Navigate directly to the role-based dashboard
+    return StaffDashboardScreen(role: role);
   }
 }

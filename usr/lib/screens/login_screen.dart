@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:couldai_user_app/constants/app_roles.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,6 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
+  String _role = '';
 
   @override
   Widget build(BuildContext context) {
@@ -81,17 +83,32 @@ class _LoginScreenState extends State<LoginScreen> {
                       _formKey.currentState!.save();
                       // TODO: Implement actual login logic
                       print('Email: $_email, Password: $_password');
-                      
-                      // Navigate to the correct portal after login
+
+                      // For Staff, determine role from email (mock authentication)
+                      if (portalType == 'Staff') {
+                        _role = AppRoles.getRoleFromEmail(_email);
+                        if (_role.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Invalid credentials for Staff role')),
+                          );
+                          return;
+                        }
+                      } else if (portalType == 'Parent') {
+                        _role = AppRoles.parent;
+                      } else if (portalType == 'Student') {
+                        _role = 'Student'; // Simple for now, can expand later
+                      }
+
+                      // Navigate to the correct portal after login, passing role
                       switch (portalType) {
                         case 'Student':
                           Navigator.pushReplacementNamed(context, '/student_portal');
                           break;
                         case 'Parent':
-                          Navigator.pushReplacementNamed(context, '/parent_portal');
+                          Navigator.pushReplacementNamed(context, '/parent_portal', arguments: _role);
                           break;
                         case 'Staff':
-                          Navigator.pushReplacementNamed(context, '/staff_portal');
+                          Navigator.pushReplacementNamed(context, '/staff_portal', arguments: _role);
                           break;
                       }
                     }
